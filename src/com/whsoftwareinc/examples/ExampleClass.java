@@ -5,7 +5,7 @@
 *	
 *	All Rights Reserved
 *
-*	dd/mm/yyyy: Comment: your name here
+*	dd/mm/yyyy: Comment: your name here.
 *                                                
 /--**/
 package com.whsoftwareinc.examples;
