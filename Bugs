@@ -1,0 +1,3 @@
+1. Somtimes when the program launches, the TextArea is not attached to the frame
+   and no writing area is available.
+   FIXED**

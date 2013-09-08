@@ -1,0 +1,8 @@
+STEP 1:
+Using cmd, switch your directory to the included Notes Headers
+STEP 2:
+Javac your filename
+Eg javac testplugin1.java
+STEP3:
+Open the Notes .jar, add your compiled class to the directory com.whsoftwareinc.plugins.classes.
+Also add your .class file to the directory plugs\

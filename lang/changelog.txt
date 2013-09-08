@@ -1,0 +1,16 @@
+Language Changelog
+
+27/05/12
+-----------
+Added Language Support in Notes.
+Added, Japanese, English, Russian, Chinese(Simplified), Dutch, French, German, Greek and Italian language packs.
+Included Bonus, Pirate and Dovah Language File
+
+28/09/12
+-----------
+Dovah Font now displays correctly in Notes.
+Bug with switching to Asian languages corrected.
+
+29/09/12
+------------
+Added Serbian and Swedish language packs.

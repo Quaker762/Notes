@@ -1,0 +1,8 @@
+NOTES ERROR LOG 
+
+Sat Sep 07 23:42:07 EST 2013
+SYSTEM: Console intialised successfully!
+SYSTEM: Frame initialised at size:1000, 850
+SYSTEM: Something went wrong! Notes has started in safe mode!
+FATAL: NOTES FATAL ERROR OUT_OF_MEMORY
+

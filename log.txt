@@ -1,0 +1,8 @@
+NOTES LOG 
+
+Sat Sep 07 23:28:12 EST 2013 
+
+SYSTEM: Console intialised successfully!
+SYSTEM: Frame initialised at size:1000, 850
+ 
+

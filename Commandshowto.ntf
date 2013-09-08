@@ -1,0 +1,4 @@
+How to get prev commands:
+1. As commands are entered, store them in an array
+2. Get up key Input.
+3. When pressed, display current command as one from the Array!

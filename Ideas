@@ -1,0 +1,9 @@
+Lang Files:
+Instead of the "KnownLangFiles" class used in the original Notes, 
+scroll through the lang directory until a match is found.
+Read the name of the lang from the propfile, and scroll through all the 
+file names in the directory until it is found.
+
+Save messages (such as "Do you want to save") to a string in the lang file.
+The actual message string (probably static) will be equal to the translated 
+sentence. 
