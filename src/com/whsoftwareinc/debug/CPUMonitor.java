@@ -9,22 +9,33 @@ import com.whsoftwareinc.system.Watchdog;
 
 public class CPUMonitor implements Runnable {
 	
-	public static boolean running = false;
+	public boolean running = false;
 	Watchdog ex = new Watchdog();
 	
 	public CPUMonitor()
 	{
-		
 	}
 	
 	/*Thread for the CPU monitor*/
 	public void run() 
 	{
+
+	}
+	
+	public long cpuUsage()
+	{
+		long startTime = System.nanoTime();
+		return System.nanoTime() - startTime;
+	}
+	
+	public void start()
+	{
+		running = true;
 		/*While the program is running...*/
-		while(true)
+		while(running)
 		{
 			/*Get the cpu usage and print it*/
-			//System.out.println("CPU:" + cpuUsage() / 100 + "%");
+			System.out.println("CPU:" + cpuUsage() / 100 + "%");
 			
 			/*Check if program is using too much cpu*/
 			if(cpuUsage() / 100 > 70)
@@ -42,11 +53,5 @@ public class CPUMonitor implements Runnable {
 				ex.printStackTrace();
 			}	
 		}
-	}
-	
-	public long cpuUsage()
-	{
-		long startTime = System.nanoTime();
-		return System.nanoTime() - startTime;
 	}
 }

@@ -18,10 +18,8 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-
 import javax.swing.UIManager;
 import javax.swing.text.Highlighter;
-
 import com.whsoftwareinc.copyprotect.CheckKey;
 import com.whsoftwareinc.copyprotect.NotesCK;
 import com.whsoftwareinc.copyprotect.NotesCK.Type;
@@ -29,7 +27,6 @@ import com.whsoftwareinc.debug.CPUMonitor;
 import com.whsoftwareinc.debug.MemoryMonitor;
 import com.whsoftwareinc.debug.SystemConsole;
 import com.whsoftwareinc.debug.SystemConsole.Types;
-import com.whsoftwareinc.exception.UnknownLanguageException;
 import com.whsoftwareinc.plugins.PluginLoader;
 import com.whsoftwareinc.system.NotesLangFile;
 import com.whsoftwareinc.system.NotesPropFile;
@@ -204,8 +201,8 @@ public class Notes {
 		lang.readLangFile(new File("lang/" + npropfile.prop.getProperty("lang").toLowerCase()));
 		//System.out.println(npropfile.prop.getProperty("lang"));
 		/* Put any threads here */
-		cpum.run();
-		memm.run();
+		cpum.start();
+		memm.start();
 	}
 	
 	//If the program quit unexpectedly, init in safemode

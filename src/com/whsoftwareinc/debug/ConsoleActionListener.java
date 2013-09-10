@@ -166,7 +166,7 @@ public class ConsoleActionListener implements ActionListener {
 				else if(comm.startsWith("verinfo"))
 				{
 					Notes.console.dPrint("Notes by WareHouse Software");
-					Notes.console.dPrint("Currently Running " + Notes.getVersion());
+					Notes.console.dPrint("Currently Version " + Notes.getVersion());
 					Notes.console.dPrint("Note that this is Beta Software! It does not represent the final product!");
 				}
 			}

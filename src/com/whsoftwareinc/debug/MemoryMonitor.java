@@ -12,15 +12,32 @@ public class MemoryMonitor implements Runnable {
 	
 	public OSMemoryInfo meminfo = new OSMemoryInfo();
 	
+	private boolean running;
+	
 	
 	public MemoryMonitor()
 	{
-		
+		running = false;
 	}
 	
 	public void run()
 	{
-		while(true)
+
+	}
+	
+	/* Calculate and return memory usage of the program */
+	public long calculateMemUsage()
+	{
+		long currentMem = meminfo.totalMem - meminfo.freeMem / OSMemoryInfo.MEGABYTE;
+		
+		return currentMem;
+	}
+	
+	public void start()
+	{
+		running = true;
+		
+		while(running)
 		{
 			/*Get the cpu usage and print it*/
 			System.out.println(calculateMemUsage());
@@ -35,13 +52,4 @@ public class MemoryMonitor implements Runnable {
 			}	
 		}
 	}
-	
-	/* Calculate and return memory usage of the program */
-	public long calculateMemUsage()
-	{
-		long currentMem = meminfo.totalMem - meminfo.freeMem / OSMemoryInfo.MEGABYTE;
-		
-		return currentMem;
-	}
-
 }
