@@ -13,13 +13,15 @@
 /--**/
 package com.whsoftwareinc;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import javax.swing.UIManager;
+
 import javax.swing.text.Highlighter;
+
 import com.whsoftwareinc.copyprotect.CheckKey;
 import com.whsoftwareinc.copyprotect.NotesCK;
 import com.whsoftwareinc.copyprotect.NotesCK.Type;
@@ -170,6 +172,7 @@ public class Notes {
 	
 	public static void exit()
 	{
+		System.gc();
 		System.exit(0);
 	}
 
@@ -201,8 +204,8 @@ public class Notes {
 		lang.readLangFile(new File("lang/" + npropfile.prop.getProperty("lang").toLowerCase()));
 		//System.out.println(npropfile.prop.getProperty("lang"));
 		/* Put any threads here */
-		cpum.start();
-		memm.start();
+		//cpum.start();
+		//memm.start();
 	}
 	
 	//If the program quit unexpectedly, init in safemode
@@ -210,6 +213,8 @@ public class Notes {
 	{
 		frame = new NotesFrame(1000, 850, "Notes WareHouse Software Beta " + verNum + " SAFEMODE", "res/NotesLogo.png");
 		frame.render(false, false);
+		frame.textArea.setForeground(Color.BLACK);
+		frame.textArea.setBackground(Color.WHITE);
 		console.dPrint(Types.SYSTEM, "Frame initialised at size:" + frame.getWidth() + ", " + frame.getHeight());
 		frame.setSize(1000, 849);
 		//Delete the "Safemode" file.

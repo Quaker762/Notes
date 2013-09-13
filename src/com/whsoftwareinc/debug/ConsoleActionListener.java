@@ -5,6 +5,7 @@
 /--**/
 package com.whsoftwareinc.debug;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -156,6 +157,11 @@ public class ConsoleActionListener implements ActionListener {
 					ex.printStackTrace();
 				}
 			}
+			else if(comm.startsWith("rungc"))
+			{
+				System.gc();
+				Notes.console.dPrint(Types.SYSTEM, "Garbage Collection Run!");
+			}
 			else if(debugMode)
 			{
 				if(comm.startsWith("debugcpu"))
@@ -168,6 +174,11 @@ public class ConsoleActionListener implements ActionListener {
 					Notes.console.dPrint("Notes by WareHouse Software");
 					Notes.console.dPrint("Currently Version " + Notes.getVersion());
 					Notes.console.dPrint("Note that this is Beta Software! It does not represent the final product!");
+				}
+				if(comm.startsWith("rungc"))
+				{
+					System.gc();
+					Notes.console.dPrint(Types.SYSTEM, "Garbage Collection Run!");
 				}
 			}
 			else 
@@ -230,5 +241,10 @@ public class ConsoleActionListener implements ActionListener {
 		lang.readLangFile(langF);
 		Notes.console.dPrint(Types.SYSTEM, "Languaged has been changed to: " + args);
 		Notes.npropfile.savePropToPropFile("lang", args, "notes.config");
+	}
+	
+	private void changeBGColour(int r, int g, int b)
+	{
+		NotesFrame.textArea.setBackground(new Color(r, g, b));
 	}
 }
