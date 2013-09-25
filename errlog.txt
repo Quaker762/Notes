@@ -1,8 +1,9 @@
 NOTES ERROR LOG 
 
-Sun Sep 22 17:35:41 EST 2013
+Wed Sep 25 20:05:48 EST 2013
 SYSTEM: Console intialised successfully!
 SYSTEM: Frame initialised at size:1000, 850
-SYSTEM: Something went wrong! Notes has started in safe mode!
+SYSTEM: Languaged has been changed to: japanese
+SYSTEM: Languaged has been changed to: japanese.lang
 FATAL: NOTES FATAL ERROR OUT_OF_MEMORY
 

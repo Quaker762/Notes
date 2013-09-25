@@ -14,9 +14,6 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.UIManager;
 
 import com.whsoftwareinc.Notes;
@@ -170,8 +167,15 @@ public class ConsoleActionListener implements ActionListener {
 			}
 			else if(comm.startsWith("icarus"))
 			{
-				Notes.console.dPrint(Types.WARNING, "ICARUS LIVES!");
-				playIcarus();
+				if(!sp.isActive())
+				{
+					Notes.console.dPrint(Types.WARNING, "ICARUS LIVES!");
+					playIcarus();
+				}
+				else
+				{
+					Notes.console.dPrint(Types.WARNING, "Icarus already lives!");
+				}
 			}
 			else if(comm.startsWith("stopicarus"))
 			{
@@ -199,7 +203,7 @@ public class ConsoleActionListener implements ActionListener {
 			}
 			else 
 			{
-				System.out.println("INVALID COMMAND");
+				System.out.println("Invalid Command: " + command);
 			}
 		}
 		else
@@ -267,6 +271,7 @@ public class ConsoleActionListener implements ActionListener {
 	private void playIcarus()
 	{
 		File icarus = new File("icarus.wav");
+		NotesFrame.textArea.append("Icarus Lives...\n");
 		sp.play(icarus);
 	}
 }

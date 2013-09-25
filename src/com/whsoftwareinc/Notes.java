@@ -30,6 +30,7 @@ import com.whsoftwareinc.debug.MemoryMonitor;
 import com.whsoftwareinc.debug.SystemConsole;
 import com.whsoftwareinc.debug.SystemConsole.Types;
 import com.whsoftwareinc.plugins.Plugin;
+import com.whsoftwareinc.system.DateCheck;
 import com.whsoftwareinc.system.NotesLangFile;
 import com.whsoftwareinc.system.NotesPropFile;
 import com.whsoftwareinc.ui.NotesFrame;
@@ -50,6 +51,7 @@ public class Notes {
 	public boolean debugmode = false;
 	public boolean safemode = false;
 	private File sFile = new File("smode.err");
+	private DateCheck dCheck = new DateCheck();
 	
 	private NotesLangFile lang = new NotesLangFile();
 	
@@ -62,6 +64,8 @@ public class Notes {
 	public static NotesPropFile npropfile = new NotesPropFile();
 	/* Notes console */
 	public static SystemConsole console = new SystemConsole();
+	//Frame name
+	public static final String TITLE = "Notes ";
 
 	/* Text Area highlighter */
 	public static Highlighter highlighter = NotesFrame.textArea.getHighlighter();
@@ -206,7 +210,7 @@ public class Notes {
 		frame.setSize(1000, 851);
 		// HACK: Set the font of the text area
 		NotesFrame.textArea.setFont(Font.decode(npropfile.prop.getProperty("font")));
-		
+		dCheck.checkDate();
 		lang.readLangFile(new File("lang/" + npropfile.prop.getProperty("lang").toLowerCase()));
 		//System.out.println(npropfile.prop.getProperty("lang"));
 		/* Put any threads here */
