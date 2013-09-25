@@ -10,28 +10,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import javax.swing.JScrollPane;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.UIManager;
 
 import com.whsoftwareinc.Notes;
 import com.whsoftwareinc.debug.SystemConsole.Types;
-import com.whsoftwareinc.exception.UnknownLanguageException;
-import com.whsoftwareinc.system.Watchdog;
 import com.whsoftwareinc.system.NotesLangFile;
 import com.whsoftwareinc.system.OSMemoryInfo;
+import com.whsoftwareinc.system.SoundPlayer;
+import com.whsoftwareinc.system.Watchdog;
 import com.whsoftwareinc.ui.NotesFrame;
-import com.whsoftwareinc.ui.NotesTextBox;
 
 public class ConsoleActionListener implements ActionListener {
 	
 	public CPUMonitor cpu = new CPUMonitor();
 	public boolean isCpuDebug = false;
 	public boolean debugMode = true;
+	
+	private SoundPlayer sp = new SoundPlayer();
 	
 	public static ArrayList<String> lastComm = new ArrayList<String>();
 	
@@ -166,6 +168,16 @@ public class ConsoleActionListener implements ActionListener {
 			{
 				Notes.console.cls();
 			}
+			else if(comm.startsWith("icarus"))
+			{
+				Notes.console.dPrint(Types.WARNING, "ICARUS LIVES!");
+				playIcarus();
+			}
+			else if(comm.startsWith("stopicarus"))
+			{
+				Notes.console.dPrint(Types.WARNING, "ICARUS DIES!");
+				sp.stop();
+			}
 			else if(debugMode)
 			{
 				if(comm.startsWith("debugcpu"))
@@ -250,5 +262,11 @@ public class ConsoleActionListener implements ActionListener {
 	private void changeBGColour(int r, int g, int b)
 	{
 		NotesFrame.textArea.setBackground(new Color(r, g, b));
+	}
+	
+	private void playIcarus()
+	{
+		File icarus = new File("icarus.wav");
+		sp.play(icarus);
 	}
 }
