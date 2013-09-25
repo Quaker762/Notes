@@ -29,7 +29,7 @@ import com.whsoftwareinc.debug.CPUMonitor;
 import com.whsoftwareinc.debug.MemoryMonitor;
 import com.whsoftwareinc.debug.SystemConsole;
 import com.whsoftwareinc.debug.SystemConsole.Types;
-import com.whsoftwareinc.plugins.PluginLoader;
+import com.whsoftwareinc.plugins.Plugin;
 import com.whsoftwareinc.system.NotesLangFile;
 import com.whsoftwareinc.system.NotesPropFile;
 import com.whsoftwareinc.ui.NotesFrame;
@@ -75,29 +75,35 @@ public class Notes {
 	public void go()
 	{
 		/* Call methods up here */
+		
+		//Does the safemode file exist?
 		if(sFile.exists())
 		{
+			//YES! Notes terminated unexpectedly!
 			safemode = true;
 		}
-		try
+		else
 		{
-			loadPlugins();
-		}
-		catch (MalformedURLException e)
-		{
-			e.printStackTrace();
-		} 
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		} 
-		catch (InstantiationException e)
-		{
-			e.printStackTrace();
-		} 
-		catch (IllegalAccessException e)
-		{
-			e.printStackTrace();
+			try
+			{
+				loadPlugins();
+			}
+			catch (MalformedURLException e)
+			{
+				e.printStackTrace();
+			} 
+			catch (ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			} 
+			catch (InstantiationException e)
+			{
+				e.printStackTrace();
+			} 
+			catch (IllegalAccessException e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		npropfile.readPropFile();
@@ -110,7 +116,7 @@ public class Notes {
 		}
 		else if(safemode)
 		{
-			initSystemSafemode();
+			initSystemSafemode(); //Initialise in safe mode.
 			console.dPrint(Types.SYSTEM, "Something went wrong! Notes has started in safe mode!");
 		}
 		
@@ -136,6 +142,7 @@ public class Notes {
 		if (plugins == null)
 		{
 			console.dPrint(Types.WARNING, "System plugins null!");
+			return; //Exit this method. 
 		} 
 		else
 		{
@@ -144,7 +151,7 @@ public class Notes {
 				plugins[i].lastIndexOf(".");
 				ClassLoader cl = new URLClassLoader(classURL);
 				Class loadedClass = cl.loadClass("com.whsoftwareinc.plugins.classes." + stripExtension(plugins[i]));
-				PluginLoader pluginInstance = (PluginLoader) loadedClass.newInstance();
+				Plugin pluginInstance = (Plugin) loadedClass.newInstance();
 				pluginInstance.init();
 				System.out.println(pluginInstance.name());
 			}
@@ -172,7 +179,6 @@ public class Notes {
 	
 	public static void exit()
 	{
-		System.gc();
 		System.exit(0);
 	}
 
@@ -198,7 +204,7 @@ public class Notes {
 		console.dPrint(Types.SYSTEM, "Frame initialised at size:" + frame.getWidth() + ", " + frame.getHeight());
 		//FIX: Fix the no render bug by forcing the frame to resize.
 		frame.setSize(1000, 851);
-		/* HACK: Set the font of the text area */
+		// HACK: Set the font of the text area
 		NotesFrame.textArea.setFont(Font.decode(npropfile.prop.getProperty("font")));
 		
 		lang.readLangFile(new File("lang/" + npropfile.prop.getProperty("lang").toLowerCase()));
@@ -213,8 +219,8 @@ public class Notes {
 	{
 		frame = new NotesFrame(1000, 850, "Notes WareHouse Software Beta " + verNum + " SAFEMODE", "res/NotesLogo.png");
 		frame.render(false, false);
-		frame.textArea.setForeground(Color.BLACK);
-		frame.textArea.setBackground(Color.WHITE);
+		NotesFrame.textArea.setForeground(Color.BLACK);
+		NotesFrame.textArea.setBackground(Color.WHITE);
 		console.dPrint(Types.SYSTEM, "Frame initialised at size:" + frame.getWidth() + ", " + frame.getHeight());
 		frame.setSize(1000, 849);
 		//Delete the "Safemode" file.

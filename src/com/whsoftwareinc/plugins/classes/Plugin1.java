@@ -6,9 +6,9 @@
 package com.whsoftwareinc.plugins.classes;
 
 import com.whsoftwareinc.Notes;
-import com.whsoftwareinc.plugins.PluginLoader;
+import com.whsoftwareinc.plugins.Plugin;
 
-public class Plugin1 implements PluginLoader {
+public class Plugin1 implements Plugin {
 	
 	public String getPluginName()
 	{

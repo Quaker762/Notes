@@ -5,9 +5,9 @@
 /--**/
 package com.whsoftwareinc.plugins.classes;
 
-import com.whsoftwareinc.plugins.PluginLoader;
+import com.whsoftwareinc.plugins.Plugin;
 
-public class Plugin2 implements PluginLoader {
+public class Plugin2 implements Plugin {
 	
 	public String getPluginName()
 	{

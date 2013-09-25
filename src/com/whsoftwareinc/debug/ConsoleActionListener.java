@@ -162,6 +162,10 @@ public class ConsoleActionListener implements ActionListener {
 				System.gc();
 				Notes.console.dPrint(Types.SYSTEM, "Garbage Collection Run!");
 			}
+			else if(comm.startsWith("clear"))
+			{
+				Notes.console.cls();
+			}
 			else if(debugMode)
 			{
 				if(comm.startsWith("debugcpu"))

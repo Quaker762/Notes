@@ -17,9 +17,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.JOptionPane;
+
 import com.swabunga.spell.engine.SpellDictionary;
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.swing.JTextComponentSpellChecker;
+import com.whsoftwareinc.Notes;
+import com.whsoftwareinc.debug.SystemConsole.Types;
 import com.whsoftwareinc.ui.NotesFrame;
 import com.whsoftwareinc.ui.NotesTextBox;
 
@@ -32,6 +36,14 @@ public class JazzySpellCheckMenuListener implements ActionListener {
 		/* Init Dictionary */
 		File dictFile = new File(englishDictionary2);
 		
+		//Check if the text area is empty.
+		//If it is, display a message
+		if(NotesFrame.textArea.getText().isEmpty())
+		{
+			Notes.console.dPrint(Types.SYSTEM, "TextArea is Empty!!! No need to spellcheck!");
+			JOptionPane.showMessageDialog(null, "TextArea is empty!!! No need to spellcheck!");
+		}
+		
 		try
 		{
 			dictionary = new SpellDictionaryHashMap(dictFile);
@@ -40,7 +52,8 @@ public class JazzySpellCheckMenuListener implements ActionListener {
 		{
 			ex.printStackTrace();
 		}
-		/* Draw the SpellCheck frame */
+		
+		// Draw the spellcheck frame.
 		JTextComponentSpellChecker sc = new JTextComponentSpellChecker(dictionary);
 		NotesTextBox text = NotesFrame.textArea;
 		sc.spellCheck(text);

@@ -5,7 +5,7 @@
 /--**/
 package com.whsoftwareinc.plugins;
 
-public interface PluginLoader {
+public interface Plugin {
 
 	/* Get the name of the plugin */
 	public String getPluginName();

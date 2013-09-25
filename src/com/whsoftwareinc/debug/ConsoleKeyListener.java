@@ -39,11 +39,16 @@ public class ConsoleKeyListener implements KeyListener {
 
 	public void keyReleased(KeyEvent e)
 	{
-		//tPushed = tPushed;
+		//tPushed = tPushed; Pointless...
 	}
 
 	public void keyTyped(KeyEvent e)
 	{
 		
+	}
+	
+	public int getTimesPressed()
+	{
+		return tPushed;
 	}
 }

@@ -15,7 +15,9 @@ package com.whsoftwareinc.actionlistener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import com.whsoftwareinc.debug.*;
+
+import com.whsoftwareinc.Notes;
+import com.whsoftwareinc.debug.SystemConsole;
 
 public class DebugConsoleActionListener implements ActionListener {
 	
@@ -24,6 +26,7 @@ public class DebugConsoleActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent arg0)
 	{
 		console.consoleFrame.setVisible(true);
+		console.consoleFrame.setLocationRelativeTo(Notes.frame);
 		console.input.requestFocus();
 	}
 

@@ -21,6 +21,7 @@ public class SystemConsole {
 	public static JTextArea console;
 	public static JTextField input;
 	public JScrollPane pane;
+	public boolean visible;
 
 	/* Constructor */
 	public SystemConsole()
@@ -77,6 +78,11 @@ public class SystemConsole {
 	public void forceVisible()
 	{
 		console.setVisible(true);
+	}
+	
+	public void cls()
+	{
+		console.setText("");
 	}
 	
 	public static enum Types
