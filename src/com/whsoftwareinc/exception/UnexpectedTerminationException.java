@@ -25,5 +25,4 @@ public class UnexpectedTerminationException extends Exception{
 		super(ex);
 		System.err.println(s);
 	}
-
 }

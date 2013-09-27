@@ -6,6 +6,7 @@
 package com.whsoftwareinc.debug;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -169,7 +170,7 @@ public class ConsoleActionListener implements ActionListener {
 			{
 				if(!sp.isActive())
 				{
-					Notes.console.dPrint(Types.WARNING, "ICARUS LIVES!");
+					Notes.console.dPrint(Types.SYSTEM, "Icarus Lives...");
 					playIcarus();
 				}
 				else
@@ -177,10 +178,36 @@ public class ConsoleActionListener implements ActionListener {
 					Notes.console.dPrint(Types.WARNING, "Icarus already lives!");
 				}
 			}
-			else if(comm.startsWith("stopicarus"))
+			
+			else if(comm.startsWith("stop"))
 			{
-				Notes.console.dPrint(Types.WARNING, "ICARUS DIES!");
 				sp.stop();
+				Notes.console.console.setFont(new Font("Courier New", 12, 12));
+			}
+			else if(comm.startsWith("mad"))
+			{
+				if(!sp.isActive())
+				{
+					Notes.console.dPrint(Types.SYSTEM, "That's Totla Mad!");
+					playTotla();
+				}
+				else
+				{
+					Notes.console.dPrint(Types.WARNING, "Already Mad!");
+				}
+			}
+			else if(comm.startsWith("ponponpon"))
+			{
+				if(!sp.isActive())
+				{
+					Notes.console.console.setFont(new Font("Bitstream Cyberbit", Font.PLAIN, 12));
+					Notes.console.dPrint(Types.SYSTEM, "ねえ！あなたはにほんじんですか？ PONPONPON");
+					ponPon();
+				}
+				else
+				{
+					Notes.console.dPrint(Types.WARNING, "ALready Pon'ing!");
+				}
 			}
 			else if(debugMode)
 			{
@@ -273,5 +300,19 @@ public class ConsoleActionListener implements ActionListener {
 		File icarus = new File("icarus.wav");
 		NotesFrame.textArea.append("Icarus Lives...\n");
 		sp.play(icarus);
+	}
+	
+	private void playTotla()
+	{
+		File tMad = new File("mad.wav");
+		NotesFrame.textArea.append("TOTLA MAD BRO");
+		sp.play(tMad);
+	}
+	
+	private void ponPon()
+	{
+		File pon = new File("pon.wav");
+		NotesFrame.textArea.append("PON PON PON!!");
+		sp.play(pon);
 	}
 }

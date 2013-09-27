@@ -16,6 +16,8 @@ package com.whsoftwareinc;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -95,18 +97,22 @@ public class Notes {
 			catch (MalformedURLException e)
 			{
 				e.printStackTrace();
+				traceToString(e);
 			} 
 			catch (ClassNotFoundException e)
 			{
 				e.printStackTrace();
+				traceToString(e);
 			} 
 			catch (InstantiationException e)
 			{
 				e.printStackTrace();
+				traceToString(e);
 			} 
 			catch (IllegalAccessException e)
 			{
 				e.printStackTrace();
+				traceToString(e);
 			}
 		}
 
@@ -126,12 +132,12 @@ public class Notes {
 		
 		if (npropfile.prop.getProperty("serial").equals(""))
 		{
-			System.out.println("Prop key blank!");
+			console.dPrint(Types.WARNING, "Prop key blank!");
 			check2.checkKey();
 		}
 		else if(NotesCK.CK_CheckKey(npropfile.prop.getProperty("serial"))  == Type.KEY_GOOD && !debugmode && !safemode)
 		{
-			System.out.println("Checked Key from prop!");
+			console.dPrint(Types.SYSTEM, "Checked Key from prop!");
 			initSystem();
 		}
 	}
@@ -229,5 +235,14 @@ public class Notes {
 		frame.setSize(1000, 849);
 		//Delete the "Safemode" file.
 		sFile.delete();
+	}
+	
+	//Stacktrace to string
+	public String traceToString(Exception ex)
+	{
+		StringWriter errors = new StringWriter();
+		ex.printStackTrace(new PrintWriter(errors));
+		Notes.console.dPrint(Types.ERROR, errors.toString());
+		return errors.toString();
 	}
 }

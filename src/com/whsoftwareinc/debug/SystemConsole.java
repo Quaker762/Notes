@@ -87,6 +87,6 @@ public class SystemConsole {
 	
 	public static enum Types
 	{
-		SYSTEM, WARNING, ERROR, FATAL
+		SYSTEM, WARNING, ERROR, FATAL, EXCEPTION
 	}
 }

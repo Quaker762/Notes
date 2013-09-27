@@ -39,7 +39,7 @@ public class Watchdog {
 	
 	public static final int TEST_CRASH_ERROR = -99; //Test Crash!
 	
-	/*Quits and prints to the console with the programs final, dying breath*/
+	//Quits and prints to the console with the programs final, dying breath
 	public static void quitWithException(int exception)
 	{
 		System.err.println("Notes has quit due to exception " + exception + ", " + getException(exception) + "!");
@@ -73,7 +73,7 @@ public class Watchdog {
 				+ getException(exception), null, JOptionPane.ERROR_MESSAGE, null);
 	}
 	
-	/*Get the exception number and return the error*/
+	//Get the exception number and return the error
 	public static String getException(int exception)
 	{
 		if(exception == -1)
